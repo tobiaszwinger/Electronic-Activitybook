@@ -1,0 +1,15 @@
+.tourtitle {
+  font-size: large;
+}
+
+mat-card {
+  margin-bottom: 8px;
+  margin-left: -3px;
+  margin-right: -3px;
+  background-color: #4F4F4F;
+}
+
+.delete-icon {
+  margin-top: -8px;
+  margin-right: -10px;
+}

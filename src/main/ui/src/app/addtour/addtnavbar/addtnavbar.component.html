@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <mat-form-field class="titleClass">
+    <input matInput placeholder="Neuer Ausflug" (input)="onTitleChange($event.target.value)"
+           [formControl]="FormValidation" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="FormValidation.hasError('required')">
+      Titel <strong>benötigt!</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Zeitraum</mat-label >
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Startdatum" [(ngModel)]="modeldatestart" (ngModelChange)="onStartDateChange($event)">
+      <input matEndDate placeholder="Enddatum" [(ngModel)]="modeldateend" (ngModelChange)="onEndDateChange($event)">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <span class="spacer"></span>
+  <button mat-raised-button color="primary" (click)="handleSubmit()">Speichern</button>
+</mat-toolbar>

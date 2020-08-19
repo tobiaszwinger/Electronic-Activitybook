@@ -1,0 +1,10 @@
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened">Sidenav</mat-sidenav>
+  <mat-sidenav-content>
+    <app-navigationbar (opensideEmitter)="setOpen()"></app-navigationbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

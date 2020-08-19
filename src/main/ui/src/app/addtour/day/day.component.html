@@ -1,0 +1,16 @@
+<mat-card class="card-container" >
+  <mat-card-title style="display: flex; justify-content: space-between;">
+    <span>
+      Tag {{day.inc}}
+      <button mat-raised-button color="primary" (click)="this.addTour()">Tour hinzufügen</button>
+    </span>
+    <span class="daytitle">{{day.date}}</span>
+  </mat-card-title>
+  <mat-form-field class="input">
+    <mat-label>Wetter</mat-label>
+    <input matInput (input)="onWeatherChange($event.target.value)">
+  </mat-form-field>
+  <mat-card-content>
+    <app-tour *ngFor="let tour of this.tours" [tour]="tour" (delEmitter)="delTour($event)" (uploadEmitter)="getFromChild($event)">Tour {{tour.inc}}</app-tour>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,23 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  font-size: medium;
+  height: 75px;
+  background-color: #292929;
+}
+
+mat-form-field {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.titleClass {
+  width: 300px;
+}
+
+button {
+  font-size: medium;
+}
+
