@@ -1,0 +1,23 @@
+<mat-card class="card-container" >
+  <mat-card-title  style="display: flex; justify-content: space-between;">
+    <span class="tourtitle">
+      {{this.mainType}}
+    </span>
+    <button mat-icon-button class="delete-icon" (click)="deleteTour()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field *ngIf="mainType=='Aktivität'">
+        <mat-label>Typ</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let type of types" value="type" (onSelectionChange)="this.selectionSet(type)">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-form *ngIf="mainType!='Aktivität'" [type]="this.mainType" (uploadEmitter)="getFromChild($event)"></app-form>
+    </form>
+  </mat-card-content>
+</mat-card>

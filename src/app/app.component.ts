@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Bergbuch-frontend';
+  title = 'Bergbuch';
+  opened = false;
+
+  setOpen(): void {
+    this.opened = !this.opened;
+  }
 }

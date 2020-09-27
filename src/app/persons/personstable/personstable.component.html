@@ -1,0 +1,18 @@
+<div class="mat-elevation-z8 personstable">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="firstn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
+      <td mat-cell *matCellDef="let row">{{row.firstn}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="lastn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
+      <td mat-cell *matCellDef="let row">{{row.lastn}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

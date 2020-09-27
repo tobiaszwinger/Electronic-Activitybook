@@ -1,0 +1,22 @@
+<app-addtnavbar (uploadEmitter)="getFromChild($event)" (submitEmitter)="submit()"></app-addtnavbar>
+<mat-card class="card-container" >
+  <mat-card-title style="display: flex; justify-content: space-between;">
+    <span style="font-size: large">Allgemein</span>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-form-field class="inputarea">
+      <mat-label style="font-size: large">Beschreibung</mat-label>
+      <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"
+                (input)="onDescripChange($event.target.value)">
+      </textarea>
+    </mat-form-field>
+    Personen
+  </mat-card-content>
+</mat-card>
+<app-day *ngFor="let day of this.trip.days" [day]="day"
+         (uploadEmitter)="getFromChildTour($event)"
+         (uploadWeatherEmitter)="getFromChildWeather($event)" ></app-day>
