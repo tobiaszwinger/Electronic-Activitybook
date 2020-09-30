@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.addWrapper {
+  width: 80%;
+  align-self: center;
+}
+
+.newPerson {
+  display: flex;
+}
+
+.input {
+  margin-right: 15px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  height: 40px;
+  font-size: medium;
+}

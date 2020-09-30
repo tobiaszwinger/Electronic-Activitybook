@@ -1,1 +1,19 @@
-<p>person-ui works!</p>
+<div class="container">
+  <div class="addWrapper">
+    <button mat-icon-button class="person_add" (click)="this.openAddPerson()">
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <div *ngIf="addPerson" class="newPerson">
+      <mat-form-field class="input" >
+        <mat-label>Vorname</mat-label>
+        <input matInput (input)="onFirstnameChange($event.target.value)">
+      </mat-form-field>
+      <mat-form-field class="input" >
+        <mat-label>Nachname</mat-label>
+        <input matInput (input)="onLastnameChange($event.target.value)">
+      </mat-form-field>
+      <span class="spacer"></span>
+      <button mat-raised-button color="primary" (click)="handleSubmit()">Speichern</button>
+    </div>
+  </div>
+</div>
