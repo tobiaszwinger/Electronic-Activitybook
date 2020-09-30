@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {HttpClient} from '@angular/common/http';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {TypeService} from '../../../services/type.service';
 
 @Component({
   selector: 'app-tour',
@@ -9,71 +10,65 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class TourComponent implements OnInit {
 
-  constructor(private http : HttpClient, private _snackBar: MatSnackBar){ }
+  constructor(private http: HttpClient,
+              private _snackBar: MatSnackBar,
+              private tripService: TypeService){ }
 
   @Input() tour;
   newtour = {
-    id: "",
-    dayid: "",
-    title: "",
-    durat: "",
-    duratup: "",
-    starttime: "",
-    location: "",
-    descrip: "",
-    peakheight: "",
-    altidiff: "",
-    kilometre: "",
-    difficulty: "",
-    ropes: "",
-  }
+    id: '',
+    dayid: '',
+    title: '',
+    durat: '',
+    duratup: '',
+    starttime: '',
+    location: '',
+    descrip: '',
+    peakheight: '',
+    altidiff: '',
+    kilometre: '',
+    difficulty: '',
+    ropes: '',
+  };
   @Output() uploadEmitter = new EventEmitter();
   @Output() delEmitter = new EventEmitter();
   types = [];
-  mainType = "Aktivität";
+  mainType = 'Aktivität';
   connected;
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string): void {
     this._snackBar.open(message, action, {
       duration: 3000,
     });
   }
 
-  connect(){
-    this.http.get('http://localhost:8080/api/type')
-      .subscribe((response: any) => {
-        if(response.length > 0) this.connected = true;
-        for (let i = 0; i < response.length; i++) {
-          this.types.push(response[i].title);
-        }
-      });
-  }
-
-  getFromChild(value: any){
+  getFromChild(value: any): void{
     value.id = this.tour.id;
     this.newtour = value;
     this.upload();
   }
 
-  upload(){
+  upload(): void{
     this.uploadEmitter.emit(this.newtour);
   }
 
   ngOnInit(): void {
     this.connected = false;
-    this.connect();
-    /*if (!this.connected) {
-      this.openSnackBar("Keine Verbindung zum Backend!", "Schließen");
-      this.deleteTour();
-      this.connect();
-    }*/
+    this.tripService.getTypes().subscribe(types => {
+      console.log(types);
+      this.types = types;
+      if (types.length === 0) {
+        this.openSnackBar('No connection to firebase or no data found!', 'close');
+        this.deleteTour();
+      }
+    });
   }
 
-  deleteTour(){
+  deleteTour(): void{
     this.delEmitter.emit(this.tour);
   }
 
-  selectionSet(selection: any){
+  selectionSet(selection: any): void{
     this.mainType = selection;
   }
 
