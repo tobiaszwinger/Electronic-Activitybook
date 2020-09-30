@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {DayComponent} from './day/day.component';
+import {TripService} from "../services/trip.service";
+import {TypeService} from "../services/type.service";
 
 @Component({
   selector: 'app-addtour',
@@ -9,7 +11,8 @@ import {DayComponent} from './day/day.component';
 })
 export class AddtourComponent implements OnInit {
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar,
+              private tripService: TripService) { }
 
   // basic layout
   /*
@@ -62,14 +65,15 @@ export class AddtourComponent implements OnInit {
     });
   }
 
-  submit(){
+  submit(): void {
     console.log(this.trip);
+    this.tripService.addTrip(this.trip);
   }
 
-  getFromChildTour(tour: any){
+  getFromChildTour(tour: any): void {
     let set = false;
     for (let i = 0; i < this.trip.days[tour.dayid].tours.length; i++){
-      if (this.trip.days[tour.dayid].tours[i].id == tour.id){
+      if (this.trip.days[tour.dayid].tours[i].id === tour.id){
         this.trip.days[tour.dayid].tours[i] = tour;
         set = true;
       }
@@ -87,8 +91,8 @@ export class AddtourComponent implements OnInit {
     this.trip.title = trip.title;
 
     if (trip.datestart !== null && trip.dateend !== null){
-      const datestartFormat = trip.datestart.getFullYear() + '-' + (trip.datestart.getMonth() + 1) + '-' + (trip.datestart.getDate() + 1);
-      const dateendFormat = trip.dateend.getFullYear() + '-' + (trip.dateend.getMonth() + 1) + '-' + (trip.dateend.getDate() + 1);
+      const datestartFormat = trip.datestart.getFullYear() + '-' + (trip.datestart.getMonth() + 1) + '-' + (trip.datestart.getDate());
+      const dateendFormat = trip.dateend.getFullYear() + '-' + (trip.dateend.getMonth() + 1) + '-' + (trip.dateend.getDate());
 
       this.trip.datestart = datestartFormat;
       this.trip.dateend = dateendFormat;
@@ -113,6 +117,7 @@ export class AddtourComponent implements OnInit {
         try {
           range = dateRange(new Date(datestartFormat), new Date(dateendFormat));
           for (let i = 0; i <= diffDays; i++){
+            range[i].setDate(range[i].getDate() + 1);
             this.trip.days.push({
               inc: i + 1,
               id: i,
@@ -127,10 +132,6 @@ export class AddtourComponent implements OnInit {
         }
       }
     }
-  }
-
-  onWeatherChange(value: any): void {
-
   }
 
   onDescripChange(value: any): void {

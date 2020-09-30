@@ -1,8 +1,12 @@
 .input {
-  padding: 5px;
+  padding: 2px;
 }
 .inputarea {
   padding: 5px;
   width: 100%;
+}
+.wrapper {
+  margin-right: 20px;
+  display: inline-block;
 }
 

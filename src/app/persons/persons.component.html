@@ -1,1 +1,2 @@
-<app-personstable [data]="persons"></app-personstable>
+<app-person-ui></app-person-ui>
+<app-personstable *ngIf="isDataLoaded" [data]="persons"></app-personstable>

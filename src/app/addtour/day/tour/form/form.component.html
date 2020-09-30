@@ -1,4 +1,4 @@
-<mat-form-field class="input">
+<mat-form-field class="input wrapper">
   <mat-label>Titel</mat-label>
   <input matInput [formControl]="FormValidation" [errorStateMatcher]="matcher"
          placeholder="zb.: Gaisberg" (input)="onTitleChange($event.target.value)">
@@ -6,42 +6,60 @@
     Titel <strong>benötigt!</strong>
   </mat-error>
 </mat-form-field>
-<mat-form-field class="input">
+<mat-form-field class="input wrapper">
   <mat-label>Startzeit</mat-label>
   <input type="time" matInput (input)="onStarttimeChange($event.target.value)">
 </mat-form-field>
-<mat-form-field class="input">
-  <mat-label>Dauer</mat-label>
-  <input type="number" step="0.01" matInput (input)="onDuratChange($event.target.value)">
-</mat-form-field>
-<mat-form-field class="input">
-  <mat-label>Aufstiegsdauer</mat-label>
-  <input type="number" step="0.01" matInput (input)="onDuratupChange($event.target.value)">
-</mat-form-field>
-<mat-form-field class="input">
+<div class="wrapper">
+  <mat-form-field class="input">
+    <mat-label>Dauer</mat-label>
+    <input type="number" step="0.01" matInput (input)="onDuratChange($event.target.value)">
+  </mat-form-field>
+  <span>h</span>
+</div>
+<div class="wrapper">
+  <mat-form-field class="input">
+    <mat-label>Aufstiegsdauer</mat-label>
+    <input type="number" step="0.01" matInput (input)="onDuratupChange($event.target.value)">
+  </mat-form-field>
+  <span>h</span>
+</div>
+<mat-form-field class="input wrapper">
   <mat-label>Ort/Gebiet</mat-label>
   <input matInput (input)="onLocationChange($event.target.value)">
 </mat-form-field>
-<mat-form-field class="input">
-  <mat-label>Höhe Gipfel</mat-label>
-  <input type="number" step="1" matInput (input)="onPeakheightChange($event.target.value)">
-</mat-form-field>
-<mat-form-field class="input">
-  <mat-label>Höhenunterschied</mat-label>
-  <input type="number" step="1" matInput (input)="onAltidiffChange($event.target.value)">
-</mat-form-field>
-<mat-form-field class="input">
-  <mat-label>Kilometer</mat-label>
-  <input type="number" step="1" matInput (input)="onKilometreChange($event.target.value)">
-</mat-form-field>
-<mat-form-field class="input">
+<div class="wrapper">
+  <mat-form-field class="input">
+    <mat-label>Höhe Gipfel</mat-label>
+    <input type="number" step="1" matInput (input)="onPeakheightChange($event.target.value)">
+  </mat-form-field>
+  <span>m</span>
+</div>
+<div class="wrapper">
+  <mat-form-field class="input">
+    <mat-label>Höhenunterschied</mat-label>
+    <input type="number" step="1" matInput (input)="onAltidiffChange($event.target.value)">
+  </mat-form-field>
+  <span>m</span>
+</div>
+<div class="wrapper">
+  <mat-form-field class="input">
+    <mat-label>Kilometer</mat-label>
+    <input type="number" step="1" matInput (input)="onKilometreChange($event.target.value)">
+  </mat-form-field>
+  <span>km</span>
+</div>
+<mat-form-field class="input wrapper">
   <mat-label>Schwierigkeitsgrad</mat-label>
   <input matInput (input)="onDifficultyChange($event.target.value)">
 </mat-form-field>
-<mat-form-field class="input">
-  <mat-label>Seillängen</mat-label>
-  <input type="number" step="1" matInput (input)="onRopesChange($event.target.value)">
-</mat-form-field>
+<div class="wrapper">
+  <span>#</span>
+  <mat-form-field class="input">
+    <mat-label>Seillängen</mat-label>
+    <input type="number" step="1" matInput (input)="onRopesChange($event.target.value)">
+  </mat-form-field>
+</div>
 <mat-form-field class="inputarea">
   <mat-label style="font-size: large">Beschreibung</mat-label>
   <textarea matInput

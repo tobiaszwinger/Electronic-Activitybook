@@ -12,7 +12,7 @@ export class TourComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private _snackBar: MatSnackBar,
-              private tripService: TypeService){ }
+              private typeService: TypeService){ }
 
   @Input() tour;
   newtour = {
@@ -48,14 +48,13 @@ export class TourComponent implements OnInit {
     this.upload();
   }
 
-  upload(): void{
+  upload(): void {
     this.uploadEmitter.emit(this.newtour);
   }
 
   ngOnInit(): void {
     this.connected = false;
-    this.tripService.getTypes().subscribe(types => {
-      console.log(types);
+    this.typeService.getTypes().subscribe(types => {
       this.types = types;
       if (types.length === 0) {
         this.openSnackBar('No connection to firebase or no data found!', 'close');

@@ -3,13 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import {Input} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
 
 // TODO: Replace this with your own data model type
 export interface PersonstableItem {
-  firstn: string;
-  lastn: string;
+  firstname: string;
+  lastname: string;
 }
 
 /**
@@ -22,7 +20,6 @@ export class PersonstableDataSource extends DataSource<PersonstableItem> {
   constructor(data: any) {
     super();
     this.data = data;
-    console.log(this.data);
   }
 
   paginator: MatPaginator;
@@ -50,14 +47,14 @@ export class PersonstableDataSource extends DataSource<PersonstableItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect(): void {}
 
   /**
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
   private getSortedData(data: PersonstableItem[]) {
-      return data;
+    return data;
   }
 }
 

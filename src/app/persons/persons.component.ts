@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {PersonService} from '../services/person.service';
 
 @Component({
   selector: 'app-persons',
@@ -8,33 +9,16 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PersonsComponent implements OnInit {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient,
+              private personService: PersonService) { }
 
+  isDataLoaded = false;
   persons = [];
 
   ngOnInit(): void {
-    this.connect();
+    this.personService.getPersons().subscribe(persons => {
+      this.persons = persons;
+      this.isDataLoaded = true;
+    });
   }
-
-  connect(): void {
-    let data = [{firstn: "tobi", lastn: "test"},{}]
-    this.http.get('http://localhost:8080/api/persons')
-      .subscribe((response: any) => {
-        for(let i = 0; i < response.length; i++) {
-          data.push({
-            // firstn: response[i].firstn,
-            // lastn: response[i].lastn,
-          });
-        }
-      });
-    /*data = [
-      {firstn: "tobi", lastn: "test"},
-      {firstn: "tobi", lastn: "test"},
-      {firstn: "tobi", lastn: "test"},
-      {firstn: "tobi", lastn: "test"},
-    ]*/
-    console.log(data);
-    this.persons = data;
-  }
-
 }

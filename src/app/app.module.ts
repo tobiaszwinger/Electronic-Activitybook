@@ -40,6 +40,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {TypeService} from './services/type.service';
+import {TripService} from "./services/trip.service";
+import {PersonService} from "./services/person.service";
+import { PersonUIComponent } from './persons/person-ui/person-ui.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,7 @@ import {TypeService} from './services/type.service';
     TourComponent,
     FormComponent,
     PersonstableComponent,
+    PersonUIComponent,
   ],
     imports: [
         BrowserModule,
@@ -89,7 +93,9 @@ import {TypeService} from './services/type.service';
         MatSortModule
     ],
   providers: [AngularFirestore,
-              TypeService],
+              TypeService,
+              TripService,
+              PersonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

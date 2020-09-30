@@ -12,45 +12,44 @@ export class AddtnavbarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {}
-
   trip = {
-    title: "",
-    datestart: "",
-    dateend: ""
-  }
+    title: '',
+    datestart: '',
+    dateend: ''
+  };
   modeldateend: any;
   modeldatestart: any;
   @Output() uploadEmitter = new EventEmitter();
   @Output() submitEmitter = new EventEmitter();
-
-  onTitleChange(value: any){
-    this.trip.title = value;
-    this.upload();
-  }
-
-  onStartDateChange(value: any){
-    this.trip.datestart = value;
-  }
-
-  onEndDateChange(value: any){
-    this.trip.dateend = value;
-    this.upload();
-  }
-
-  handleSubmit(){
-    this.submitEmitter.emit();
-  }
-
-  upload(){
-    this.uploadEmitter.emit(this.trip);
-  }
 
   FormValidation = new FormControl('', [
     Validators.required,
   ]);
   matcher = new MyErrorStateMatcher();
 
+  ngOnInit(): void {}
+
+  onTitleChange(value: any): void {
+    this.trip.title = value;
+    this.upload();
+  }
+
+  onStartDateChange(value: any): void {
+    this.trip.datestart = value;
+  }
+
+  onEndDateChange(value: any): void {
+    this.trip.dateend = value;
+    this.upload();
+  }
+
+  handleSubmit(): void {
+    this.submitEmitter.emit();
+  }
+
+  upload(): void {
+    this.uploadEmitter.emit(this.trip);
+  }
 }
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {

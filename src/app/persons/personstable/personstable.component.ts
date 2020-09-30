@@ -15,13 +15,13 @@ export class PersonstableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table: MatTable<PersonstableItem>;
   @Input() data;
   dataSource: PersonstableDataSource;
-  displayedColumns = ['firstn', 'lastn'];
+  displayedColumns = ['firstname', 'lastname'];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataSource = new PersonstableDataSource(this.data);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
