@@ -84,6 +84,10 @@ export class AddtourComponent implements OnInit {
     }
   }
 
+  getPersons(persons): void {
+    // console.log(persons);
+  }
+
   getFromChild(trip: any): void {
     if (trip.datestart !== this.trip.datestart) {
       this.trip.days = [];

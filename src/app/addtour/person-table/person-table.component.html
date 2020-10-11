@@ -1,0 +1,23 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text"
+           placeholder="Personen"
+           matInput
+           id="idperson"
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let person of filteredOptions | async" [value]="(person.firstname + ' ' + person.lastname)"
+                  (onSelectionChange)="this.onSelectionChanged(person)">
+        {{person.firstname}} {{person.lastname}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div *ngFor="let person of this.selectedPersons">
+    <button mat-icon-button class="remove" (click)="this.removePerson(person)">
+      <mat-icon>remove</mat-icon>
+    </button>
+    {{person.firstname}} {{person.lastname}}
+  </div>
+</form>
+
