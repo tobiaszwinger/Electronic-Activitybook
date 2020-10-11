@@ -1,0 +1,23 @@
+.listWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  width: 95%
+}
+
+.tripItem {
+  text-align: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.textWrapper {
+  width: 100%;
+  display: flex;
+  margin: 13px 10px 0 0;
+}

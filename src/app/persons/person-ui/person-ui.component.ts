@@ -41,10 +41,11 @@ export class PersonUIComponent implements OnInit {
     if (this.newPerson.firstname && this.newPerson.lastname) {
       this.personService.addPerson(this.newPerson);
       this.addPerson = false;
-      this.router.navigate(['./persons'])
-        .then(() => {
-          window.location.reload();
-        });
+      // TODO: The new person does not pass when uncomment
+      // this.router.navigate(['./persons'])
+      //   .then(() => {
+      //     window.location.reload();
+      //   });
     } else {
       this.openSnackBar('Please fill in data', 'close');
     }

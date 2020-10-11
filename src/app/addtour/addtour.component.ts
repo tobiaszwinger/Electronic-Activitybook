@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {DayComponent} from './day/day.component';
-import {TripService} from "../services/trip.service";
-import {TypeService} from "../services/type.service";
+import {TripService} from '../services/trip.service';
 
 @Component({
   selector: 'app-addtour',
@@ -52,6 +51,7 @@ export class AddtourComponent implements OnInit {
     title: '',
     datestart: '',
     dateend: '',
+    datetext: '',
     descrip: '',
     persons: [],
     days: []
@@ -66,6 +66,7 @@ export class AddtourComponent implements OnInit {
   }
 
   submit(): void {
+    this.openSnackBar('Trip successfully saved!', 'close');
     console.log(this.trip);
     this.tripService.addTrip(this.trip);
   }
@@ -91,8 +92,11 @@ export class AddtourComponent implements OnInit {
     this.trip.title = trip.title;
 
     if (trip.datestart !== null && trip.dateend !== null){
-      const datestartFormat = trip.datestart.getFullYear() + '-' + (trip.datestart.getMonth() + 1) + '-' + (trip.datestart.getDate());
-      const dateendFormat = trip.dateend.getFullYear() + '-' + (trip.dateend.getMonth() + 1) + '-' + (trip.dateend.getDate());
+      const datestartFormat = (trip.datestart.getDate() + '.' + (trip.datestart.getMonth() + 1) + '.' + trip.datestart.getFullYear());
+      const dateendFormat = (trip.dateend.getDate() + '.' + (trip.dateend.getMonth() + 1) + '.' + trip.dateend.getFullYear());
+
+      // TODO: to not remove tours when changing title
+      // if (this.trip.datestart !== datestartFormat || this.trip.dateend !== dateendFormat) {
 
       this.trip.datestart = datestartFormat;
       this.trip.dateend = dateendFormat;
@@ -103,10 +107,10 @@ export class AddtourComponent implements OnInit {
         return result;
       };
 
-      const dateRange = (start, end, range = []) => {
-        if (start > end) { return range; }
+      const dateRange = (start, end, range2 = []) => {
+        if (start > end) { return range2; }
         const next = addDays(start, 1);
-        return dateRange(next, end, [...range, start]);
+        return dateRange(next, end, [...range2, start]);
       };
 
       const diffTime = (trip.dateend.getTime() - trip.datestart.getTime());
@@ -114,21 +118,16 @@ export class AddtourComponent implements OnInit {
 
       let range;
       if (this.trip.days.length !== diffDays + 1){
-        try {
-          range = dateRange(new Date(datestartFormat), new Date(dateendFormat));
-          for (let i = 0; i <= diffDays; i++){
-            range[i].setDate(range[i].getDate() + 1);
-            this.trip.days.push({
-              inc: i + 1,
-              id: i,
-              date: range[i].toISOString().slice(0, 10),
-              tours: [],
-              weather: '',
-            });
-          }
-        }
-        catch (e) {
-          this.openSnackBar('Zeitraum hat nicht funktioniert', 'Schließen');
+        range = dateRange(new Date(datestartFormat), new Date(dateendFormat));
+        for (let i = 0; i <= diffDays; i++){
+          range[i].setDate(range[i].getDate() + 1);
+          this.trip.days.push({
+            inc: i + 1,
+            id: i,
+            date: range[i].toISOString().slice(0, 10),
+            tours: this.trip.days[i] && this.trip.days[i].tours ? this.trip.days[i].tours : [],
+            weather: '',
+          });
         }
       }
     }

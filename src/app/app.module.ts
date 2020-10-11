@@ -40,9 +40,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {TypeService} from './services/type.service';
-import {TripService} from "./services/trip.service";
-import {PersonService} from "./services/person.service";
+import {TripService} from './services/trip.service';
+import {PersonService} from './services/person.service';
 import { PersonUIComponent } from './persons/person-ui/person-ui.component';
+import { TripTableComponent } from './home/trip-table/trip-table.component';
+import { CommonModule } from '@angular/common';
+import { PersonTableComponent } from './addtour/person-table/person-table.component';
 
 @NgModule({
   declarations: [
@@ -57,41 +60,45 @@ import { PersonUIComponent } from './persons/person-ui/person-ui.component';
     FormComponent,
     PersonstableComponent,
     PersonUIComponent,
+    TripTableComponent,
+    PersonTableComponent,
   ],
-    imports: [
-        BrowserModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig, 'Electronic-Activitybook'),
-        AngularFirestoreModule, // Only required for database features
-        // AngularFireAuthModule, // Only required for auth features,
-        // AngularFireStorageModule, // Only required for storage features
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MatSelectModule,
-        FormsModule,
-        MatCardModule,
-        MatSnackBarModule,
-        MatAutocompleteModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        MatGridListModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule
-    ],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'Electronic-Activitybook'),
+    AngularFirestoreModule, // Only required for database features
+    // AngularFireAuthModule, // Only required for auth features,
+    // AngularFireStorageModule, // Only required for storage features
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+  ],
   providers: [AngularFirestore,
               TypeService,
               TripService,

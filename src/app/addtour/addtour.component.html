@@ -4,17 +4,17 @@
     <span style="font-size: large">Allgemein</span>
   </mat-card-title>
   <mat-card-content>
-    <mat-form-field class="inputarea">
-      <mat-label style="font-size: large">Beschreibung</mat-label>
-      <textarea matInput
-                cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5"
-                (input)="onDescripChange($event.target.value)">
-      </textarea>
-    </mat-form-field>
-    Personen
+        <span style="font-size: medium; margin-right: 10px">Personen</span>
+        <app-person-table></app-person-table>
+        <mat-form-field class="inputarea">
+          <mat-label style="font-size: small">Beschreibung</mat-label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    (input)="onDescripChange($event.target.value)"></textarea>
+        </mat-form-field>
   </mat-card-content>
 </mat-card>
 <app-day *ngFor="let day of this.trip.days" [day]="day"
