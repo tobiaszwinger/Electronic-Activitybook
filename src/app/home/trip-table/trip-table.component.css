@@ -11,13 +11,3 @@
 .tripItem {
   text-align: center;
 }
-
-.spacer {
-  flex: 1 1 auto;
-}
-
-.textWrapper {
-  width: 100%;
-  display: flex;
-  margin: 13px 10px 0 0;
-}

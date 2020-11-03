@@ -15,9 +15,11 @@ export class TourComponent implements OnInit {
               private typeService: TypeService){ }
 
   @Input() tour;
+  mainType = '';
   newtour = {
     id: '',
     dayid: '',
+    type: '',
     title: '',
     durat: '',
     duratup: '',
@@ -33,7 +35,6 @@ export class TourComponent implements OnInit {
   @Output() uploadEmitter = new EventEmitter();
   @Output() delEmitter = new EventEmitter();
   types = [];
-  mainType = 'Aktivität';
   connected;
 
   openSnackBar(message: string, action: string): void {
@@ -44,6 +45,7 @@ export class TourComponent implements OnInit {
 
   getFromChild(value: any): void{
     value.id = this.tour.id;
+    value.type = this.mainType;
     this.newtour = value;
     this.upload();
   }
@@ -67,8 +69,7 @@ export class TourComponent implements OnInit {
     this.delEmitter.emit(this.tour);
   }
 
-  selectionSet(selection: any): void{
-    this.mainType = selection;
+  onActivationChange(value: any): void {
+    this.mainType = value;
   }
-
 }

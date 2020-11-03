@@ -46,6 +46,9 @@ import { PersonUIComponent } from './persons/person-ui/person-ui.component';
 import { TripTableComponent } from './home/trip-table/trip-table.component';
 import { CommonModule } from '@angular/common';
 import { PersonTableComponent } from './addtour/person-table/person-table.component';
+import { FileSelectionComponent } from './addtour/file-selection/file-selection.component';
+import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-bar';
+import { TripComponent } from './home/trip-table/trip/trip.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,8 @@ import { PersonTableComponent } from './addtour/person-table/person-table.compon
     PersonUIComponent,
     TripTableComponent,
     PersonTableComponent,
+    FileSelectionComponent,
+    TripComponent,
   ],
   imports: [
     CommonModule,
@@ -97,7 +102,8 @@ import { PersonTableComponent } from './addtour/person-table/person-table.compon
     MatGridListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressBarModule
   ],
   providers: [AngularFirestore,
               TypeService,

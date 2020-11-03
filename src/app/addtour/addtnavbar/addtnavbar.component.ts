@@ -22,12 +22,24 @@ export class AddtnavbarComponent implements OnInit {
   @Output() uploadEmitter = new EventEmitter();
   @Output() submitEmitter = new EventEmitter();
 
-  FormValidation = new FormControl('', [
-    Validators.required,
-  ]);
+  titleForm = new FormControl('');
+
+  // TODO: Validation?
+  // titleForm = new FormControl('', [
+  //   Validators.required,
+  // ]);
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {}
+
+  reset(): void {
+    this.trip = {
+      title: '',
+      datestart: '',
+      dateend: ''
+    };
+    this.titleForm.reset();
+  }
 
   onTitleChange(value: any): void {
     this.trip.title = value;

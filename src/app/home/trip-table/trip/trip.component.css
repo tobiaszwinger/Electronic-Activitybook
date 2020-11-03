@@ -1,0 +1,19 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.textWrapper {
+  width: 100%;
+  display: flex;
+  margin: 13px 10px 0 0;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tripItem {
+  text-align: center;
+}

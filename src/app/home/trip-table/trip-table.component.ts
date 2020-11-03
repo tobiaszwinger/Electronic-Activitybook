@@ -20,7 +20,5 @@ export class TripTableComponent implements OnInit {
     });
   }
 
-  deleteTour(trip): void {
-    this.tripService.deleteTrip(trip);
-  }
+
 }

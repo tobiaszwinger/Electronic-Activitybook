@@ -1,5 +1,5 @@
 mat-card-title {
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 }
 
 .card-container {
@@ -12,4 +12,25 @@ mat-card-title {
 
 .inputarea {
   width: 100%;
+}
+
+.flexdiv {
+  display: flex;
+}
+
+.media {
+  width: 100%
+}
+
+.persons {
+  width: 100%
+}
+
+.description {
+  width: 100%
+}
+
+img {
+  margin: 10px 20px 5px 0;
+  align-self: flex-end;
 }

@@ -1,0 +1,16 @@
+.person {
+  margin-bottom: -12px;
+}
+
+mat-form-field {
+  margin-bottom: -15px;
+}
+
+form {
+  display: flex;
+}
+
+.person-wrapper {
+  margin-top: -50px;
+  align-items: flex-end;
+}

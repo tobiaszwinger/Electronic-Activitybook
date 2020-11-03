@@ -1,0 +1,7 @@
+::ng-deep .mat-progress-bar-buffer {
+  background: #424242;
+}
+
+mat-progress-bar {
+  margin: 10px 0 10px 0;
+}

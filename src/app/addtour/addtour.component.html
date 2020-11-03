@@ -4,17 +4,28 @@
     <span style="font-size: large">Allgemein</span>
   </mat-card-title>
   <mat-card-content>
+    <div class="flexdiv">
+      <div class="media">
+        <span style="font-size: medium; margin-right: 10px">Gipfelbild</span>
+        <app-file-selection [trip]="trip" (uploadEmitter)="getImage($event)"></app-file-selection>
+      </div>
+      <div class="persons">
         <span style="font-size: medium; margin-right: 10px">Personen</span>
         <app-person-table (uploadEmitter)="getPersons($event)"></app-person-table>
-        <mat-form-field class="inputarea">
-          <mat-label style="font-size: small">Beschreibung</mat-label>
-          <textarea matInput
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="5"
-                    (input)="onDescripChange($event.target.value)"></textarea>
-        </mat-form-field>
+      </div>
+      <img [src]="this.imageUrl" height="300" *ngIf="this.imageUrl">
+    </div>
+    <div class="description">
+      <mat-form-field class="inputarea">
+        <mat-label style="font-size: small">Beschreibung</mat-label>
+        <textarea matInput
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                  (input)="onDescripChange($event.target.value)"></textarea>
+      </mat-form-field>
+    </div>
   </mat-card-content>
 </mat-card>
 <app-day *ngFor="let day of this.trip.days" [day]="day"

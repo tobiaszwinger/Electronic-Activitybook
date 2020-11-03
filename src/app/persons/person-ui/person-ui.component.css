@@ -26,3 +26,7 @@ button {
   height: 40px;
   font-size: medium;
 }
+
+.icon {
+  margin: 15px 15px 0 0;
+}

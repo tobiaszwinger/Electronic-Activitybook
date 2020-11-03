@@ -13,11 +13,16 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <div *ngFor="let person of this.selectedPersons">
-    <button mat-icon-button class="remove" (click)="this.removePerson(person)">
-      <mat-icon>remove</mat-icon>
-    </button>
-    {{person.firstname}} {{person.lastname}}
+  <button mat-icon-button class="add" (click)="this.addNotKnownPerson()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <div class="person-wrapper">
+    <div class="person" *ngFor="let person of this.selectedPersons">
+      <button mat-icon-button class="remove" (click)="this.removePerson(person)">
+        <mat-icon>remove</mat-icon>
+      </button>
+      {{person.firstname}} {{person.lastname}}
+    </div>
   </div>
 </form>
 

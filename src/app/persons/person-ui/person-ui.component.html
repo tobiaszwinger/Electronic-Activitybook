@@ -1,9 +1,7 @@
 <div class="container">
   <div class="addWrapper">
-    <button mat-icon-button class="person_add" (click)="this.openAddPerson()">
-      <mat-icon>person_add</mat-icon>
-    </button>
-    <div *ngIf="addPerson" class="newPerson">
+    <div class="newPerson">
+      <mat-icon class="icon">person_add</mat-icon>
       <mat-form-field class="input" >
         <mat-label>Vorname</mat-label>
         <input matInput (input)="onFirstnameChange($event.target.value)">

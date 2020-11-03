@@ -1,0 +1,16 @@
+<mat-list-item class="tripItem">
+  <div class="textWrapper">
+    <p>{{trip.title}}</p>
+    <span class="spacer"></span>
+    <p *ngIf="trip.dateend === trip.datestart">{{trip.datestart}}</p>
+    <p *ngIf="trip.dateend !== trip.datestart">{{trip.datestart}} - {{trip.dateend}}</p>
+  </div>
+  <span class="spacer"></span>
+  <button mat-icon-button class="edit" routerLink="/home">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button class="delete" (click)="this.deleteTour(trip)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <mat-divider class="divider"></mat-divider>
+</mat-list-item>

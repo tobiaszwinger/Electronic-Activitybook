@@ -14,6 +14,7 @@ export class PersonTableComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   @Output() uploadEmitter = new EventEmitter();
   persons;
+  possiblePersons;
   selectedPersons = [];
   isDataLoaded = false;
 
@@ -23,6 +24,7 @@ export class PersonTableComponent implements OnInit {
   ngOnInit(): void {
     this.personService.getPersons().subscribe(persons => {
       this.persons = persons;
+      this.possiblePersons = persons;
       this.isDataLoaded = true;
       this.filteredOptions = this.myControl.valueChanges
         .pipe(
@@ -35,7 +37,7 @@ export class PersonTableComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.persons.filter(
+    return this.possiblePersons.filter(
       option => option.firstname.toLowerCase().includes(filterValue) ||
       option.lastname.toLowerCase().includes(filterValue) ||
       (option.firstname.toLowerCase() + ' ' + option.lastname.toLowerCase()).includes(filterValue));
@@ -50,6 +52,10 @@ export class PersonTableComponent implements OnInit {
           startWith(''),
           map(value => this._filter(value))
         );
+      const index: number = this.possiblePersons.indexOf(person);
+      if (index !== -1) {
+        this.possiblePersons.splice(index, 1);
+      }
       this.upload();
     }
   }
@@ -62,7 +68,31 @@ export class PersonTableComponent implements OnInit {
     const index: number = this.selectedPersons.indexOf(person);
     if (index !== -1) {
       this.selectedPersons.splice(index, 1);
+      this.possiblePersons.push(person);
+      this.filteredOptions = this.myControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
     }
     this.upload();
+  }
+
+  addNotKnownPerson(): void {
+    const personString = this.myControl.value;
+    if (personString) {
+      const personStringSplit = personString.split(' ');
+      const newPerson = {
+        firstname: personStringSplit[0],
+        lastname: personStringSplit.length > 1 ? personStringSplit[1] : '',
+      };
+      if (!this.selectedPersons.includes(newPerson) && newPerson) {
+        this.selectedPersons.push(newPerson);
+      }
+    }
+  }
+
+  reset(): void {
+    this.selectedPersons = [];
   }
 }
